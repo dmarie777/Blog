@@ -20,6 +20,6 @@
     "nodemon": "^3.0.1"
   },
   "jest": {
-    "testEnviroment": "node"
+    "testEnvironment": "node"
   }
 }
