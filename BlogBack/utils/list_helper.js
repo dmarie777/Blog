@@ -23,10 +23,24 @@ const mostBlogs = (objList) => {
     return result;
 }
 
+const mostLikes = (objList) => {
+    const group = _.groupBy(objList, 'author');
+    const mostLikes = Object.entries(group)
+                            .map( e => ({ [e[0]]: e[1].reduce((a,b)=> a+b.likes, 0)}))
+                            .sort((a,b) => b[1] - a[1])[0];
+    const author = Object.keys(mostLikes)[0]
+
+    const result = {
+        author: author,
+        likes: mostLikes[author]
+    };
+    return result;
+}
 
 
 module.exports = {
     totalLikes,
     favoriteBlog,
     mostBlogs,
+    mostLikes
 }
