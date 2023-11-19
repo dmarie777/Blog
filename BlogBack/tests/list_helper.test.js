@@ -98,7 +98,6 @@ describe('total likes', () => {
     })
   })
 
-  
   describe('mostLikes', () => {
     test('author with most likes', () => {
         const mostLikes = {
