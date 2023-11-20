@@ -37,7 +37,6 @@ const mostLikes = (objList) => {
     return result;
 }
 
-
 module.exports = {
     totalLikes,
     favoriteBlog,

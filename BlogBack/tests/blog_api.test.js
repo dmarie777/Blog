@@ -20,6 +20,12 @@ test('blogs are returned as json', async () => {
         .expect('Content-Type', /application\/json/)
 })
 
+test('unique identifier property of the blog posts is named id', async () => {
+    const blogs = await helper.blogsInDb()
+    expect(blogs[0].id).toBeDefined()
+
+})
+
 afterAll (async () => {
     await mongoose.connection.close()
 })
