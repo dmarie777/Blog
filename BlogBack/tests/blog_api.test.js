@@ -23,7 +23,23 @@ test('blogs are returned as json', async () => {
 test('unique identifier property of the blog posts is named id', async () => {
     const blogs = await helper.blogsInDb()
     expect(blogs[0].id).toBeDefined()
+})
 
+test('a new blog has been created', async () => {
+    const newBlog =     {
+        title: "test",
+        author: "test",
+        url: "http://test",
+        likes: 2,
+      }  
+    await api.post('/api/blogs')
+       .send(newBlog)
+       .expect(201)
+       .expect('Content-Type', /application\/json/)
+    const response = await api.get('/api/blogs')
+    
+    const titles = response.body.map(r => r.title)
+    expect(titles).toContain('test')
 })
 
 afterAll (async () => {
