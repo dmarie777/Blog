@@ -57,6 +57,24 @@ test('if the likes property is misssing it defaults to the value 0', async() => 
     expect(createdBlog).toHaveProperty('likes', 0)
 })
 
+test('if title or url properties are missing the backend responds with a 400 Bad Request', async() => {
+    const newBlog1 = {
+        author: "test2",
+        url: "http://test2",
+    }
+    await api.post('/api/blogs')
+        .send(newBlog1)
+        .expect(400)
+        
+    const newBlog2 = {
+        title: "test2",
+        author: "test2",
+    }
+    await api.post('/api/blogs')
+        .send(newBlog2)
+        .expect(400)
+})
+
 afterAll (async () => {
     await mongoose.connection.close()
 })
