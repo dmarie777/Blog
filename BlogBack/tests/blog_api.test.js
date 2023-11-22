@@ -40,6 +40,7 @@ test('a new blog has been created', async () => {
     
     const titles = response.body.map(r => r.title)
     expect(titles).toContain('test')
+    expect(response.body).toHaveLength(helper.initialBlogs.length+1)
 })
 
 afterAll (async () => {
