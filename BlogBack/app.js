@@ -9,7 +9,7 @@ require('dotenv').config()
 
 mongoose.connect(config.MONGODB_URI)
     .then(() => {
-        logger.info('connected to mongoSB')
+        logger.info('connected to mongoDB')
     })
     .catch(() => {
         logger.error('error connecting to MongoDB')
