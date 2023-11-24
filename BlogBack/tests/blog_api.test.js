@@ -103,6 +103,24 @@ describe('deletion of a blog', () => {
     })
 })
 
+describe('update of a blog', () => {
+    test('the blog has been updated', async() => {
+      const newBlog = {
+        title: 'new',
+        author: 'new',
+        url: 'new',
+        likes: 3
+      }
+    
+      const blogs = await helper.blogsInDb()
+      const idToUpdate = blogs[0].id
+      const response = await api
+            .put(`/api/blogs/${idToUpdate}`)
+            .send(newBlog)
+
+      expect(response.body.likes).toBe(3)
+    })
+})
 
 afterAll (async () => {
     await mongoose.connection.close()
